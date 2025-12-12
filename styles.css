@@ -1,0 +1,57 @@
+/* Estilos base */
+:root {
+  --bg: #0b1020;
+  --surface: #121833;
+  --text: #e6e8f2;
+  --muted: #a9afcf;
+  --primary: #6aa4ff;
+  --primary-700: #3d7ff2;
+  --border: #1f2647;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 20% 0%, #182044 0%, var(--bg) 60%);
+}
+
+.container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+/* Header + Nav */
+.site-header { border-bottom: 1px solid var(--border); }
+.nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+.brand { color: var(--text); font-weight: 700; text-decoration: none; letter-spacing: 0.2px; }
+.nav-links a { color: var(--muted); text-decoration: none; margin-left: 16px; }
+.nav-links a:hover { color: var(--text); }
+
+/* Hero */
+.hero { padding: 48px 0 28px; }
+.hero h1 { font-size: 2.2rem; margin: 0 0 10px; }
+.subtitle { color: var(--muted); margin: 0 0 24px; }
+.cta { display: flex; gap: 12px; }
+
+/* Buttons */
+.btn { display: inline-block; padding: 10px 16px; border-radius: 10px; border: 1px solid var(--border); color: var(--text); text-decoration: none; background: rgba(255,255,255,0.02); backdrop-filter: blur(6px); }
+.btn:hover { border-color: var(--primary); color: #fff; }
+.btn.primary { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-700) 100%); border: none; }
+
+/* Content */
+.content { padding: 28px 0 64px; }
+.card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 20px; }
+.card h2 { margin-top: 0; }
+.list { margin: 0; padding-left: 18px; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--border); padding: 20px 0; color: var(--muted); }
+.site-footer a { color: var(--muted); }
+.site-footer a:hover { color: var(--text); }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.6rem; }
+  .nav-links { display: none; }
+}

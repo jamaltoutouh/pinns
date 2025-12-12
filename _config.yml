@@ -1,0 +1,10 @@
+title: Mi Sitio
+description: Sitio estático basado en Markdown
+# Tema de GitHub Pages (no requiere Gemfile)
+theme: jekyll-theme-cayman
+
+# Opcional: URL/base para enlaces absolutos (ajústalo tras publicar)
+# url: "https://TU_USUARIO.github.io"
+# baseurl: "/NOMBRE_DEL_REPO" # para sitios de proyecto
+
+markdown: kramdown

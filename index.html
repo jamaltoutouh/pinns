@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mi Sitio • GitHub Pages</title>
+    <meta name="description" content="Sitio personal publicado con GitHub Pages" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <nav class="nav">
+          <a class="brand" href="/">Mi Sitio</a>
+          <div class="nav-links">
+            <a href="#about">Acerca de</a>
+            <a href="#projects">Proyectos</a>
+            <a href="#contact">Contacto</a>
+          </div>
+        </nav>
+        <section class="hero">
+          <h1>Publica tu web con GitHub Pages</h1>
+          <p class="subtitle">Código sencillo, despliegue rápido y gratis.</p>
+          <div class="cta">
+            <a class="btn primary" href="#projects">Ver proyectos</a>
+            <a class="btn" href="https://pages.github.com" target="_blank" rel="noopener">Aprende más</a>
+          </div>
+        </section>
+      </div>
+    </header>
+
+    <main class="container content">
+      <section id="about" class="card">
+        <h2>Acerca de</h2>
+        <p>
+          Este sitio está construido como una página estática y es compatible con GitHub Pages.
+          Edita este contenido a tu gusto y publica directamente desde tu repositorio.
+        </p>
+      </section>
+
+      <section id="projects" class="card">
+        <h2>Proyectos</h2>
+        <ul class="list">
+          <li>
+            <strong>Proyecto A:</strong> breve descripción. <a href="#">Ver más</a>
+          </li>
+          <li>
+            <strong>Proyecto B:</strong> breve descripción. <a href="#">Ver más</a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="contact" class="card">
+        <h2>Contacto</h2>
+        <p>
+          ¿Tienes preguntas o ideas? Escríbeme a
+          <a href="mailto:tu.email@ejemplo.com">tu.email@ejemplo.com</a> o visita mi
+          <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          © <span id="year"></span> • Publicado con <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
