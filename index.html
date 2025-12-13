@@ -1,78 +1,944 @@
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mi Sitio • GitHub Pages</title>
-    <meta name="description" content="Sitio personal publicado con GitHub Pages" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container">
-        <nav class="nav">
-          <a class="brand" href="/">Mi Sitio</a>
-          <div class="nav-links">
-            <a href="#about">Acerca de</a>
-            <a href="#projects">Proyectos</a>
-            <a href="#contact">Contacto</a>
-          </div>
-        </nav>
-        <section class="hero">
-          <h1>Publica tu web con GitHub Pages</h1>
-          <p class="subtitle">Código sencillo, despliegue rápido y gratis.</p>
-          <div class="cta">
-            <a class="btn primary" href="#projects">Ver proyectos</a>
-            <a class="btn" href="https://pages.github.com" target="_blank" rel="noopener">Aprende más</a>
-          </div>
-        </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evolutionary Physics-Informed Neural Networks for Fluid Mechanics</title>
+  <meta name="description" content="Project website — evolutionary computation for robust and efficient training of PINNs in fluid mechanics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============ VARIABLES Y RESET ============ */
+    :root {
+      --primary: #0052cc;
+      --primary-light: #0066ff;
+      --primary-dark: #003d99;
+      --secondary: #004085;
+      --text: #1a1a1a;
+      --text-light: #4a4a4a;
+      --text-muted: #6a6a6a;
+      --bg: #ffffff;
+      --bg-light: #f5f8fc;
+      --border: #d0dbe6;
+      --radius: 6px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* ============ TIPOGRAFÍA ============ */
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.3rem; }
+    h4 { font-size: 1.1rem; }
+
+    p {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    code {
+      background: var(--bg-light);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+
+    /* ============ LAYOUT ============ */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    section.section-muted {
+      background: var(--bg-light);
+    }
+
+    /* ============ HEADER ============ */
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .brand-mark {
+      font-size: 2rem;
+      font-weight: 700;
+      min-width: 100px;
+      text-align: center;
+    }
+
+    .brand-text h1 {
+      font-size: 1.8rem;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .brand-text .subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.95rem;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    nav a {
+      color: white;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover {
+      transform: translateY(-2px);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: white;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ============ MAIN CONTENT ============ */
+    main {
+      min-height: calc(100vh - 300px);
+    }
+
+    /* ============ CARDS ============ */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+
+    .card-title {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    /* ============ LISTAS ============ */
+    .list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .list li {
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      position: relative;
+      color: var(--text-light);
+    }
+
+    .list li:before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    ol.list li {
+      padding: 0.5rem 0 0.5rem 2rem;
+    }
+
+    ol.list li:before {
+      content: attr(data-number);
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* ============ GRID 2 COLUMNAS ============ */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============ TIMELINE ============ */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .timeline-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-item:hover {
+      border-left-color: var(--secondary);
+    }
+
+    .timeline-tag {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-content h3 {
+      margin-top: 0.5rem;
+      color: var(--text);
+    }
+
+    /* ============ TEAM ============ */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .team-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all 0.3s ease;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .team-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+
+    .team-card .avatar {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      background: var(--bg-light);
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      display: block;
+      border: 3px solid var(--border);
+    }
+
+    .team-body {
+      padding: 0;
+    }
+
+    .team-body h3 {
+      margin: 0 0 0.5rem 0;
+      color: var(--text);
+    }
+
+    .role {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .affiliation {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    .links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .links a:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* ============ TABLAS ============ */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    th {
+      background: var(--primary);
+      color: white;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tr:hover td {
+      background: var(--bg-light);
+    }
+
+    /* ============ FIGURAS ============ */
+    .figure-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .figure {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .figure img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 0.75rem;
+      border-radius: 4px;
+      background: var(--bg-light);
+    }
+
+    figcaption {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    /* ============ BOTONES ============ */
+    .button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      border-radius: var(--radius);
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid var(--primary);
+    }
+
+    .button:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .button-ghost {
+      background: transparent;
+      color: var(--primary);
+    }
+
+    .button-ghost:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* ============ CONTACT CARD ============ */
+    .contact-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+    }
+
+    @media (max-width: 600px) {
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-actions {
+        flex-direction: row;
+      }
+    }
+
+    /* ============ NOTAS Y MUTED ============ */
+    .note {
+      background: var(--bg-light);
+      padding: 1rem;
+      border-left: 3px solid var(--primary);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      margin: 1rem 0;
+    }
+
+    .muted {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      background: var(--secondary);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--primary);
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 768px) {
+      h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.5rem; }
+      
+      .brand {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .brand-text h1 {
+        font-size: 1.3rem;
+      }
+
+      nav {
+        gap: 1rem;
+        font-size: 0.85rem;
+      }
+
+      section {
+        padding: 2rem 0;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="brand">
+        <div class="brand-mark">PINN×EC</div>
+        <div class="brand-text">
+          <h1>Evolutionary Physics-Informed Neural Networks</h1>
+          <p class="subtitle">Robust and efficient training of PINNs in fluid mechanics</p>
+        </div>
       </div>
-    </header>
 
-    <main class="container content">
-      <section id="about" class="card">
-        <h2>Acerca de</h2>
+      <nav aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#why">Why</a>
+        <a href="#objectives">Objectives</a>
+        <a href="#workplan">Work plan</a>
+        <a href="#team">Team</a>
+        <a href="#paper">Paper results</a>
+        <a href="#outputs">Outputs</a>
+        <a href="#open-science">Open science</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- OVERVIEW -->
+    <section id="overview">
+      <div class="container">
+        <div class="grid-2">
+          <div>
+            <h2>Overview</h2>
+            <p>
+              Fluid mechanics underpins a wide range of natural and engineered systems, from cardiovascular flows to wind 
+              energy and environmental transport. Many relevant flows are turbulent, multi-scale, and computationally demanding 
+              to model accurately.
+            </p>
+            <p>
+              This project develops <strong>evolutionary-computation methodologies</strong> to make 
+              <strong>Physics-Informed Neural Networks (PINNs)</strong> more effective and efficient, with a primary focus on 
+              <strong>forward and inverse problems in fluid mechanics</strong>.
+            </p>
+          </div>
+
+          <aside class="card">
+            <h3 class="card-title">Quick facts</h3>
+            <ul class="list">
+              <li><strong>Focus:</strong> PINNs + EC for fluid mechanics</li>
+              <li><strong>Outputs:</strong> Tools + library + publications</li>
+              <li><strong>Open science:</strong> GitHub-based reproducibility</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section id="why" class="section-muted">
+      <div class="container">
+        <h2>Why this project</h2>
         <p>
-          Este sitio está construido como una página estática y es compatible con GitHub Pages.
-          Edita este contenido a tu gusto y publica directamente desde tu repositorio.
+          <strong>PINNs</strong> combine sparse/incomplete data with governing equations through a composite loss. While promising—
+          particularly for inverse problems—PINNs often face training instability and sensitivity to design decisions (loss 
+          balancing, activations, architecture, hyperparameters).
         </p>
-      </section>
+        <p>
+          <strong>Evolutionary Computation (EC)</strong> provides robust strategies for complex optimization and has been 
+          successfully used to automate deep learning design and training. This project leverages EC to deliver 
+          <strong>generic, reusable strategies</strong> specifically tailored to PINNs.
+        </p>
+      </div>
+    </section>
 
-      <section id="projects" class="card">
-        <h2>Proyectos</h2>
+    <!-- GOAL & OBJECTIVES -->
+    <section id="objectives">
+      <div class="container">
+        <h2>Project goal</h2>
+        <p>
+          <strong>Main objective:</strong> deliver <strong>generic algorithmic tools</strong> and an <strong>open-source library</strong> 
+          that improve the <strong>training and design of PINNs</strong> for <strong>fluid mechanics</strong> (forward and inverse problems).
+        </p>
+
+        <div class="cards">
+          <article class="card">
+            <h3 class="card-title">Core research directions</h3>
+            <ul class="list">
+              <li>Automated loss design (balancing data and physics residuals)</li>
+              <li>Automated activation functions and training schemes</li>
+              <li>Architecture and hyperparameter selection as optimization</li>
+              <li>Distributed training paradigms</li>
+              <li>Training under limited data</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Specific objectives</h3>
+            <ol class="list">
+              <li><strong>O1:</strong> Benchmarks in fluid mechanics (forward + inverse)</li>
+              <li><strong>O2:</strong> Formalize PINN training/design as optimization</li>
+              <li><strong>O3:</strong> Design EC algorithms for PINNs</li>
+              <li><strong>O4:</strong> Open-source library + reproducibility</li>
+            </ol>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK PLAN -->
+    <section id="workplan" class="section-muted">
+      <div class="container">
+        <h2>Work plan</h2>
+        
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-tag">T0</div>
+            <div class="timeline-content">
+              <h3>Project management</h3>
+              <p>Administration and economic management.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-tag">T1</div>
+            <div class="timeline-content">
+              <h3>Problem selection & baselines</h3>
+              <p>Canonical flows + applied wind-energy; establish PINN baselines.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-tag">T2</div>
+            <div class="timeline-content">
+              <h3>Mathematical modeling</h3>
+              <p>Model optimization problems and search spaces for PINN training.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-tag">T3</div>
+            <div class="timeline-content">
+              <h3>EC algorithm design</h3>
+              <p>Design GA, co-evolution, GP, and other EC methods.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-tag">T4</div>
+            <div class="timeline-content">
+              <h3>Validation</h3>
+              <p>Benchmark on forward and inverse fluid mechanics problems.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-tag">T5</div>
+            <div class="timeline-content">
+              <h3>Open-source library</h3>
+              <p>Implementation, documentation, and reproducibility artifacts.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-tag">T7</div>
+            <div class="timeline-content">
+              <h3>Scientific dissemination</h3>
+              <p>Publications in leading venues.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-tag">T8</div>
+            <div class="timeline-content">
+              <h3>Outreach</h3>
+              <p>Website, social media, videos, and press notes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team">
+      <div class="container">
+        <h2>Team</h2>
+
+        <div class="team-grid">
+          <article class="team-card">
+            <img class="avatar" src="assets/team/jamal_toutouh.jpg" alt="Jamal Toutouh">
+            <div class="team-body">
+              <h3>Jamal Toutouh</h3>
+              <p class="role">Principal Investigator (PI)</p>
+              <p class="affiliation">University of Málaga (Spain)</p>
+              <div class="links">
+                <a href="#" target="_blank">Scholar</a>
+                <a href="#" target="_blank">ORCID</a>
+                <a href="#" target="_blank">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <img class="avatar" src="assets/team/placeholder.jpg" alt="Sergio Nesmachnow">
+            <div class="team-body">
+              <h3>Sergio Nesmachnow</h3>
+              <p class="role">Co-Investigator / Collaborator</p>
+              <p class="affiliation">Universidad de la República (Uruguay)</p>
+              <div class="links">
+                <a href="#" target="_blank">Scholar</a>
+                <a href="#" target="_blank">ORCID</a>
+                <a href="#" target="_blank">GitHub</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <img class="avatar" src="assets/team/placeholder.jpg" alt="Team member">
+            <div class="team-body">
+              <h3>Team member</h3>
+              <p class="role">Role / Position</p>
+              <p class="affiliation">Institution</p>
+              <div class="links">
+                <a href="#">Scholar</a>
+                <a href="#">ORCID</a>
+                <a href="#">GitHub</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAPER RESULTS -->
+    <section id="paper" class="section-muted">
+      <div class="container">
+        <h2>Paper results: WakeGAN (Wake Conference 2023)</h2>
+        <p>
+          This section summarizes key results from prior work on GAN-based surrogates for wind turbine wakes, 
+          which motivates the broader agenda around physics-driven learning.
+        </p>
+
+        <div class="cards">
+          <article class="card">
+            <h3 class="card-title">Problem setup</h3>
+            <p>
+              A conditional DCGAN is trained to predict the <strong>mean streamwise velocity at hub height</strong> 
+              in a wake region from an <strong>upstream inflow profile</strong>. Training data comes from LES–ALM simulations; 
+              local samples are interpolated to 64×64.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Quantitative results</h3>
+            <p>
+              Four setups vary the mean-velocity time window (TW1: 1000 steps, TW4: 4000 steps) and the MSE weighting 
+              factor (<code>f_mse ∈ {0.0, 0.5}</code>). Best test performance: TW4 with <code>f_mse = 0.5</code>.
+            </p>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Setup</th>
+                    <th>Time window</th>
+                    <th>f_mse</th>
+                    <th>Test MRMSE (m/s)</th>
+                    <th>Test FID</th>
+                    <th>Time (s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>1</td><td>1000</td><td>0.0</td><td>0.39</td><td>0.46</td><td>895</td></tr>
+                  <tr><td>2</td><td>1000</td><td>0.5</td><td>0.33</td><td>0.01</td><td>873</td></tr>
+                  <tr><td>3</td><td>4000</td><td>0.0</td><td>0.22</td><td>1.10</td><td>444</td></tr>
+                  <tr><td>4</td><td>4000</td><td>0.5</td><td>0.16</td><td>0.01</td><td>398</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="note">
+              <strong>Interpretation:</strong> Shorter time windows show stronger spatial variability; adding the MSE term improves MRMSE.
+            </p>
+          </article>
+        </div>
+
+        <article class="card">
+          <h3 class="card-title">Qualitative results</h3>
+          <p>
+            For TW4, the model captures wake region and main velocity features. Larger errors appear near wake edges; 
+            errors increase for TW1. Insert your paper figures below.
+          </p>
+
+          <div class="figure-grid">
+            <figure class="figure">
+              <img src="assets/paper/figure3_tw4.png" alt="LES vs GAN (TW4)">
+              <figcaption>Figure A: LES vs GAN (TW4) — replace with your figure</figcaption>
+            </figure>
+            <figure class="figure">
+              <img src="assets/paper/figure5_tw4_error.png" alt="Error map (TW4)">
+              <figcaption>Figure B: Error map (TW4) — replace with your figure</figcaption>
+            </figure>
+            <figure class="figure">
+              <img src="assets/paper/figure7_profiles.png" alt="Profiles TW1 vs TW4">
+              <figcaption>Figure C: Profiles (TW1 vs TW4) — replace with your figure</figcaption>
+            </figure>
+          </div>
+
+          <h4>Sequential wind-farm prediction</h4>
+          <p>
+            When applying the GAN sequentially from upstream to downstream turbines, small errors can amplify 
+            downstream, and full-farm reconstruction can deteriorate with distance.
+          </p>
+
+          <h4>Practical takeaway</h4>
+          <p>
+            LES–ALM provides high fidelity but is expensive; the GAN surrogate captures key wake features and 
+            reduces runtime dramatically, highlighting the need for improved generalization.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- OUTPUTS -->
+    <section id="outputs">
+      <div class="container">
+        <h2>Expected outputs</h2>
+        
+        <div class="cards">
+          <article class="card">
+            <h3 class="card-title">Direct results</h3>
+            <ul class="list">
+              <li>Validated results on forward and inverse fluid mechanics problems</li>
+              <li>EC-based methods for PINN training/design</li>
+              <li>Open-source library and reproducible artifacts</li>
+              <li>Publications and international collaboration</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Broader outcomes</h3>
+            <ul class="list">
+              <li>Transfer of methods to other physics-informed domains</li>
+              <li>More reliable PINN pipelines where data is scarce</li>
+              <li>Reproducible and transparent research</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPEN SCIENCE -->
+    <section id="open-science" class="section-muted">
+      <div class="container">
+        <h2>Open science</h2>
+        <p>We will publish:</p>
+        <ul class="list">
+          <li>Source code (open repository)</li>
+          <li>Reproducible configurations and experiment logs</li>
+          <li>Documentation and usage examples oriented to non-experts</li>
+        </ul>
+
+        <h3>Ethics</h3>
+        <p>
+          This project does not involve living subjects or private personal data; no specific ethical concerns 
+          have been identified.
+        </p>
+
+        <h3>Related publications</h3>
         <ul class="list">
           <li>
-            <strong>Proyecto A:</strong> breve descripción. <a href="#">Ver más</a>
-          </li>
-          <li>
-            <strong>Proyecto B:</strong> breve descripción. <a href="#">Ver más</a>
+            <strong>Bove, M., López, B., Toutouh, J., Nesmachnow, S., Draper, M.</strong> (2023).
+            <em>Estimation of wind turbine wakes with generative-adversarial networks.</em>
+            Journal of Physics: Conference Series, 2505, 012053.
           </li>
         </ul>
-      </section>
-
-      <section id="contact" class="card">
-        <h2>Contacto</h2>
-        <p>
-          ¿Tienes preguntas o ideas? Escríbeme a
-          <a href="mailto:tu.email@ejemplo.com">tu.email@ejemplo.com</a> o visita mi
-          <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>.
-        </p>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container">
-        <p>
-          © <span id="year"></span> • Publicado con <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a>
-        </p>
       </div>
-    </footer>
+    </section>
 
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-  </body>
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <h2>Contact</h2>
+        
+        <div class="contact-card">
+          <div>
+            <p><strong>PI:</strong> Jamal Toutouh — University of Málaga (Spain)</p>
+            <p class="muted">For collaboration, questions, or student projects, please contact the PI.</p>
+          </div>
+          <div class="contact-actions">
+            <a class="button" href="mailto:jamal@uma.es">Send email</a>
+            <a class="button button-ghost" href="https://github.com/jamaltoutouh" target="_blank">GitHub</a>
+          </div>
+        </div>
+
+        <h3>News</h3>
+        <ul class="list">
+          <li><strong>[2025-12-13]</strong> Project website launched</li>
+          <li><strong>[TBD]</strong> First public release of PINN-EC toolkit</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> — Evolutionary PINNs for Fluid Mechanics · Built for GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>

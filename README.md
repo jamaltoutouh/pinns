@@ -1,88 +1,65 @@
-# Sitio Markdown para GitHub Pages
+# Sitio estático para GitHub Pages
 
-Este directorio contiene un sitio basado en **Markdown** que GitHub Pages publica automáticamente usando **Jekyll** y el tema `jekyll-theme-cayman`.
+Sitio limpio con HTML/CSS listo para publicar en GitHub Pages.
 
-## Estructura
+## Archivos
 
-- `_config.yml`: configuración del sitio y tema.
-- `index.md`: página principal en Markdown.
-- `404.html`: página 404 con front matter.
+- `index.html`: página principal.
+- `404.html`: página de error personalizada.
+- `_config.yml`: configuración del sitio.
 
-## Escribir contenido en Markdown
+## Editar contenido
 
-Para crear nuevas páginas, añade archivos `.md` con cabecera YAML al inicio:
-
-```markdown
----
-layout: default
-title: Acerca de
----
-
-# Acerca de
-Contenido en **Markdown**.
-```
-
-Enlázalas desde otras páginas: `[Acerca de](/about)` si el archivo se llama `about.md`.
+Modifica `index.html` directamente: cambia textos, agrega secciones, personaliza estilos.
 
 ## Publicar en GitHub Pages
 
-### Con CLI de GitHub (`gh`)
+Ya está en un repositorio Git. Para publicar:
+
+### 1. Configura la rama y el usuario (si aún no lo has hecho)
 
 ```zsh
-# Autenticación (si aplica)
-gh auth login
-
-# Sitio de usuario (https://TU_USUARIO.github.io/)
 cd "/Users/jamal/Research-Production/Proyecto Pi-GANs/web"
-# Reemplaza <TU_USUARIO>
-gh repo create <TU_USUARIO>/<TU_USUARIO>.github.io --public --source . --remote origin --push
 
-# Sitio de proyecto (https://TU_USUARIO.github.io/NOMBRE_DEL_REPO/)
-# Reemplaza <NOMBRE_DEL_REPO>
-gh repo create <NOMBRE_DEL_REPO> --public --source . --remote origin --push
+# Si es la primera vez
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu.email@gmail.com"
 ```
 
-Después, en GitHub → Settings → Pages:
-- Source: `Branch: main`, `Folder: / (root)`.
-
-### Manual con `git`
+### 2. Haz commit y push
 
 ```zsh
 cd "/Users/jamal/Research-Production/Proyecto Pi-GANs/web"
 
-git init
 git add .
-git commit -m "Inicial: sitio Markdown para GitHub Pages"
-
-git branch -M main
-# Reemplaza <TU_USUARIO> y <NOMBRE_DEL_REPO>
-git remote add origin https://github.com/<TU_USUARIO>/<NOMBRE_DEL_REPO>.git
-git push -u origin main
+git commit -m "Sitio estático inicial"
+git push origin main
 ```
 
-Activa Pages en Settings → Pages como se indicó arriba.
+### 3. Activa GitHub Pages
+
+En GitHub:
+1. Ve al repositorio → **Settings** → **Pages**
+2. Source: selecciona `Branch: main`, `Folder: / (root)`
+3. Espera a que el build termine (~1 minuto)
+4. Tu sitio estará en: `https://jamaltoutouh.github.io/NOMBRE_DEL_REPO`
 
 ## Dominio personalizado (opcional)
 
-Crea un archivo `CNAME` en la raíz con tu dominio:
+Crea un archivo `CNAME` en la raíz:
 
-```text
-www.midominio.com
+```
+tu-dominio.com
 ```
 
-Configura los registros DNS hacia GitHub según la guía oficial.
+Configura los registros DNS en tu proveedor de dominios.
 
-## Vista previa local (opcional)
+## Vista previa local
 
-Para previsualizar Jekyll localmente necesitas Ruby/Jekyll. Si no lo tienes, confía en el build de GitHub tras el push.
+Abre `index.html` en el navegador o usa un servidor local:
 
 ```zsh
-# Instalación rápida (puede requerir Xcode Command Line Tools)
-# gem install bundler jekyll
-# bundle add github-pages
-# bundle exec jekyll serve
+cd "/Users/jamal/Research-Production/Proyecto Pi-GANs/web"
+python3 -m http.server 8000
+# Abre: http://localhost:8000
 ```
-
----
-
-¿Quieres que lo publique ahora? Dime tu usuario de GitHub y si prefieres sitio de **usuario** o de **proyecto**.
